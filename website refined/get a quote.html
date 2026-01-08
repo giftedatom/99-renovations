@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get a Quote — Ninety9 Renovations</title>
+  <style>
+    :root {
+      --bg: #0f1720;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #ff6f61;
+      --container: 1100px;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: #e6eef6;
+      background: linear-gradient(180deg, #061026 0%, #071226 60%);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    header {
+      padding: 18px 24px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .logo img { height: 44px; }
+    
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.18s;
+    }
+    
+    nav a[aria-current="page"],
+    nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0 0 16px;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    
+    .hero p {
+      color: var(--muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Contact Section */
+    .contact-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px 100px;
+    }
+    
+    .contact-intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .contact-intro p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    /* Contact Cards */
+    .contact-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    
+    .contact-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+      border-color: rgba(255,111,97,0.2);
+    }
+    
+    .contact-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .contact-card h2 {
+      font-size: 1.5rem;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+    
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: block;
+      transition: all 0.2s;
+    }
+    
+    .contact-card a:hover {
+      color: #fff;
+    }
+    
+    .contact-card p {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(180deg, rgba(255,111,97,0.05), rgba(255,111,97,0.02));
+      border: 1px solid rgba(255,111,97,0.1);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .cta-section h3 {
+      font-size: 1.8rem;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+    
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    
+    .cta-button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 32px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 24px rgba(255,111,97,0.3);
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(255,111,97,0.4);
+    }
+    
+    /* Footer */
+    .site-footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.02);
+      margin-top: auto;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px;
+      gap: 24px;
+    }
+    
+    .site-footer h3, h4 {
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    
+    .copyright {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    
+    a {
+      color: var(--accent);
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-content {
+        padding: 20px 20px 80px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .contact-card {
+        padding: 32px 24px;
+      }
+      
+      .cta-section {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo_transparent_background(1).png" alt="Ninety9 Renovations logo">
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="newhome.html">Home</a>
+      <a href="newmeetourteam.html">Meet our team</a>
+      <a href="survey.html">Survey</a>
+      <a href="kitchens.html">Our work</a>
+      <a href="newaboutpage.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Get a Quote</h1>
+        <p>Ready to transform your space? Let's discuss your project and schedule a consultation.</p>
+      </div>
+    </section>
+
+    <section class="contact-content">
+      <div class="contact-intro">
+        <p>We'd love to hear about your renovation project! Whether you're planning a bathroom remodel, deck installation, or full home renovation, our team is here to help bring your vision to life.</p>
+        <p>Reach out today to schedule your free consultation and get a detailed quote.</p>
+      </div>
+
+      <div class="contact-methods">
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h2>Email Us</h2>
+          <a href="mailto:jonathan@99-renovations.com">jonathan@99-renovations.com</a>
+          <p>We'll respond within 24 hours</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <h2>Call Us</h2>
+          <a href="tel:+8434125372">(843) 412-5372</a>
+          <p>Mon-Fri: 8AM - 6PM<br>Sat: 9AM - 4PM</p>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h3>What to Expect</h3>
+        <p>When you contact us, we'll schedule a time to discuss your project goals, timeline, and budget. We'll then arrange an on-site visit to assess your space and provide you with a detailed, transparent quote.</p>
+        <a href="kitchens.html" class="cta-button">View Our Work</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Ninety9 Renovations</h3>
+          <p>Quality renovations across kitchens, bathrooms and whole-home projects.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin: 8px 0;"><a href="newhome.html">Home</a></li>
+            <li style="margin: 8px 0;"><a href="newaboutpage.html">About</a></li>
+            <li style="margin: 8px 0;"><a href="get a quote.html">Request a quote</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <address style="font-style: normal;">
+            <a href="mailto:info@ninety9renovations.com">info@ninety9renovations.com</a><br>
+            <a href="tel:+18435551234">(843) 555-1234</a>
+          </address>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year"></span> Ninety9 Renovations. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

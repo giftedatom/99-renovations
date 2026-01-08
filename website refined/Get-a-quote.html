@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get a quote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo_transparent_background.png" alt="Ninety9 Renovations logo">
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="home.html" aria-current="page">Home</a>
+      <a href="meet-our-team.html">Meet our team</a>
+      <a href="survey.html">Survey</a>
+      <a href="Project pictures.html">Our work</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="left-section">
+      <h1>The job you need</h1>
+      <h1>With the quality you deserve</h1>
+      <p>Let’s get started by entering your ZIP Code:</p>
+
+      <div class="zip-input">
+        <input type="text" placeholder="5-Digit ZIP Code" maxlength="5">
+        <button>Go</button>
+      </div>
+
+      <div class="options">
+        <div class="option"><input type="checkbox"><span>Kitchen</span></div>
+        <div class="option"><input type="checkbox"><span>Deck</span></div>
+        <div class="option"><input type="checkbox"><span>Bathroom</span></div>
+        <div class="option"><input type="checkbox"><span>Livingroom</span></div>
+        <div class="option"><input type="checkbox"><span> Other </span></div>
+      </div>
+
+      <button class="quote-btn">Start My Quote</button>
+
+      <p class="terms">
+      </p>
+    </div>
+
+    <div class="right-section">
+      <div class="video-placeholder" aria-hidden="true">
+        <img src="logo_transparent.png" alt="Decorative placeholder image" style="max-width:320px;">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+<style>
+header {
+  width: 100vw;
+  position: relative;
+  z-index: 3;
+  background: rgba(255,255,255,0.85);
+  margin: 0;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+header .logo {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 30px;
+}
+header nav {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100vw - 220px);
+  text-align: right;
+  padding: 10px 30px;
+}
+header nav a {
+  display: inline-block;
+  color: #222;
+  text-decoration: none;
+  margin: 0 18px;
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: border 0.2s;
+}
+header nav a[aria-current="page"], header nav a:hover {
+  border-bottom: 2px solid #0078d4;
+}
+@media (max-width: 700px) {
+  header, header nav {
+    display: block;
+    width: 100vw;
+    text-align: center;
+    padding: 10px 0;
+  }
+  header .logo {
+    display: block;
+    margin: 0 auto 10px auto;
+    padding: 10px 0;
+  }
+  header nav a {
+    margin: 0 8px;
+    font-size: 1em;
+  }
+}
+</style>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Ninety9 Renovations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo_transparent_background.png" alt="Ninety9 Renovations logo">
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="home.html">Home</a>
+      <a href="meet-our-team.html">Meet our team</a>
+      <a href="survey.html">Survey</a>
+      <a href="Project pictures.html">Our work</a>
+      <a href="about.html" aria-current="page">About</a>
+    </nav>
+
+</body>
+</html>
+<style>
+header {
+  width: 100vw;
+  position: relative;
+  z-index: 3;
+  background: rgba(255,255,255,0.85);
+  margin: 0;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+header .logo {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 30px;
+}
+header nav {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100vw - 220px);
+  text-align: right;
+  padding: 10px 30px;
+}
+header nav a {
+  display: inline-block;
+  color: #222;
+  text-decoration: none;
+  margin: 0 18px;
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: border 0.2s;
+}
+header nav a[aria-current="page"], header nav a:hover {
+  border-bottom: 2px solid #0078d4;
+}
+@media (max-width: 700px) {
+  header, header nav {
+    display: block;
+    width: 100vw;
+    text-align: center;
+    padding: 10px 0;
+  }
+  header .logo {
+    display: block;
+    margin: 0 auto 10px auto;
+    padding: 10px 0;
+  }
+  header nav a {
+    margin: 0 8px;
+    font-size: 1em;
+  }
+}
+</style>
+
+<div class="card" role="navigation" aria-label="Project categories">
+  <p class="Indoor">
+    <a href="bathrooms.html" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;text-decoration:none;color:inherit;">
+      <span>Bathrooms</span>
+    </a>
+  </p>
+  <p class="Handyman">
+    <a href="decks.html" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;text-decoration:none;color:inherit;">
+      <span>Decks</span>
+    </a>
+  </p>
+  <p class="Outboor">
+    <a href="kitchens.html" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;text-decoration:none;color:inherit;">
+      <span>Kitchens</span>
+    </a>
+  </p>
+</div>
+
+<style>
+/* From Uiverse.io by joe-watson-sbf */
+.card {
+  width: 800px;
+  height: 750px; /* 25% taller than 300px */
+  border-radius: 20px;
+  background: #212121;
+  display: flex;
+  gap: 8px;
+  padding: .4em;
+  margin: 40px auto;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, sans-serif;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card p {
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all .5s;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #ff5a91;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-width: 80px;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.card p:hover span {
+  transform: translate(-50%, 50%) rotate(0);
+}
+
+.card p.Indoor {
+  background-image: url('bathroom.jpg');
+}
+.card p.Handyman {
+  background-image: url('deck.jpg');
+}
+.card p.Outboor {
+  background-image: url('a modern southern ki.png');
+}
+
+.card p:hover {
+  flex: 4;
+  box-shadow: 0 8px 24px rgba(15,76,156,0.85);
+  z-index: 2;
+}
+
+.card p span {
+  min-width: 7em;
+  padding: .3em .7em;
+  text-align: center;
+  transition: all .5s;
+  text-transform: uppercase;
+  color: #179928;
+  letter-spacing: .1em;
+  background: rgba(15, 76, 156, 0.85);
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.card p:hover span {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.card p:hover span {
+  transform: translateX(-50%) rotate(0);
+}
+</style>

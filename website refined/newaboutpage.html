@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Ninety9 Renovations</title>
+  <style>
+    :root {
+      --bg: #0f1720;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #ff6f61;
+      --container: 1100px;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: #e6eef6;
+      background: linear-gradient(180deg, #061026 0%, #071226 60%);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    header {
+      padding: 18px 24px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .logo img { height: 44px; }
+    
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.18s;
+    }
+    
+    nav a[aria-current="page"],
+    nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0 0 16px;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    
+    /* Content Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px 100px;
+    }
+    
+    .about-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin: 0 0 24px;
+    }
+    
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Highlight certain paragraphs */
+    .about-content p:first-of-type {
+      font-size: 1.25rem;
+      color: #e6eef6;
+      font-weight: 500;
+    }
+    
+    .about-content p:last-of-type {
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    /* Footer */
+    .site-footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.02);
+      margin-top: 60px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px;
+      gap: 24px;
+    }
+    
+    .site-footer h3, h4 {
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    
+    .copyright {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    
+    a {
+      color: var(--accent);
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .about-content {
+        padding: 20px 20px 80px;
+      }
+      
+      .about-content p {
+        font-size: 1rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo_transparent_background(1).png" alt="Ninety9 Renovations logo">
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="newhome.html">Home</a>
+      <a href="new neetoutteam.html">Meet our team</a>
+      <a href="survey.html">Survey</a>
+      <a href="kitchens.html">Our work</a>
+      <a href="newaboutpage.html" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>About Us</h1>
+      </div>
+    </section>
+
+    <section class="about-content">
+      <p>Ninety9 Renovations is committed to delivering top-tier renovation solutions. With years of experience and a passion for quality, our team transforms spaces with professionalism and precision.</p>
+
+      <p>Our mission is to bring your vision to life — whether it's remodeling, repairs, or full-scale renovations. We pride ourselves on attention to detail, clear communication, and customer satisfaction.</p>
+
+      <p>The name Ninety9 comes from a moment with our nephew Alex, who once said, "An eight is just a sideways infinity, and nine is one more than eight. So, I love you nine." That kind of love — infinite, pure, and impossible to measure — is exactly what we want our clients to feel when they walk into their newly renovated space. It's the kind of love that makes sure you know you're home.</p>
+
+      <p>The idea for Ninety9 began over five years ago with brothers Jonathan and Jamie, who shared a vision for a renovation business built on trust and craftsmanship. When Jonathan and his wife Katy put their heads together, they realized the time was finally right to bring that dream to life. Today, Jonathan, Katy, Jamie, and the rest of our team are proud and grateful to be turning that vision into reality — one home at a time.</p>
+
+      <p>We treat every project as if we were working on our own family's home. Because to us, it's not just construction — it's care.</p>
+
+      <p>Let's build something beautiful together.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Ninety9 Renovations</h3>
+          <p>Quality renovations across kitchens, bathrooms and whole-home projects.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin: 8px 0;"><a href="home.html">Home</a></li>
+            <li style="margin: 8px 0;"><a href="about.html">About</a></li>
+            <li style="margin: 8px 0;"><a href="survey.html">Request a quote</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <address style="font-style: normal;">
+            <a href="mailto:jonathan@99-renovations.com">jonathan@99-renovations.com</a>
+            <a href="tel:+18434125372">843 412 5372</a>
+          </address>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year"></span> Ninety9 Renovations. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

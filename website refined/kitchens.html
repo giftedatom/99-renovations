@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Work — Ninety9 Renovations</title>
+  <style>
+    :root {
+      --bg: #0f1720;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #ff6f61;
+      --container: 1100px;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: #e6eef6;
+      background: linear-gradient(180deg, #061026 0%, #071226 60%);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    header {
+      padding: 18px 24px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .logo img { height: 44px; }
+    
+    nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.18s;
+    }
+    
+    nav a[aria-current="page"],
+    nav a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 64px 0 40px;
+      color: #fff;
+    }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+      margin: 0 0 6px;
+      letter-spacing: -0.4px;
+    }
+    
+    .hero .lead {
+      color: var(--muted);
+      max-width: 60ch;
+      margin-top: 12px;
+      font-size: 1.06rem;
+    }
+    
+    /* Controls / filters */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .filter {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all .18s;
+    }
+    
+    .filter.active {
+      background: var(--accent);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(255,111,97,0.12);
+      transform: translateY(-2px);
+    }
+    
+    .filter:focus {
+      outline: 2px solid rgba(255,255,255,0.08);
+      outline-offset: 3px;
+    }
+    
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      padding-bottom: 40px;
+    }
+    
+    .project-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    
+    .project-card:focus {
+      outline: 3px solid rgba(255,111,97,0.14);
+      outline-offset: 3px;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(2,6,23,0.6);
+    }
+    
+    .project-card figure {
+      margin: 0;
+      display: block;
+      height: 260px;
+      position: relative;
+    }
+    
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(.98) saturate(1.02);
+    }
+    
+    .project-card figcaption {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      color: #fff;
+      padding: 10px;
+      background: linear-gradient(180deg,transparent,rgba(0,0,0,0.45));
+      border-radius: 8px;
+    }
+    
+    .project-card h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    
+    .project-card .meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    
+    .project-card[hidden] {
+      display: none !important;
+      opacity: 0;
+      transform: scale(.98);
+    }
+    
+    /* Modal (lightbox) */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .2s;
+      z-index: 1200;
+    }
+    
+    .modal[aria-hidden="false"] {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(2,8,18,0.65);
+      backdrop-filter: blur(6px);
+    }
+    
+    .modal-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+      background: linear-gradient(180deg,#071227, #061621);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 30px 80px rgba(2,6,23,0.7);
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    
+    .modal-content {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      width: 100%;
+    }
+    
+    #modal-image {
+      width: 58%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .modal-text {
+      color: #e9f3ff;
+      flex: 1;
+    }
+    
+    .modal-text h2 {
+      margin: 4px 0 8px;
+      font-size: 1.25rem;
+    }
+    
+    .modal-text p {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    
+    .modal-close {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 26px;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+    }
+    
+    .modal-close:hover {
+      transform: scale(1.06);
+      color: var(--accent);
+    }
+    
+    .modal-open {
+      overflow: hidden;
+    }
+    
+    /* Footer */
+    .site-footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.02);
+      margin-top: 20px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px 220px;
+      gap: 24px;
+    }
+    
+    .site-footer h3, h4 {
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    
+    .copyright {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    
+    a {
+      color: var(--accent);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .gallery {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .modal-inner {
+        flex-direction: column;
+      }
+      
+      #modal-image {
+        width: 100%;
+        height: 320px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 650px) {
+      .gallery {
+        grid-template-columns: repeat(1,1fr);
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo_transparent_background(1).png" alt="Ninety9 Renovations logo">
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="newhome.html">Home</a>
+      <a href="new neetoutteam.html">Meet our team</a>
+      <a href="survey.html">Survey</a>
+      <a href="kitchens.html" aria-current="page">Our work</a>
+      <a href="newaboutpage.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Our Work — Kitchens & Renovations</h1>
+        <p class="lead">High-quality kitchen transformations. Browse recent projects and get inspired for your next renovation.</p>
+      </div>
+    </section>
+
+    <section class="controls container" aria-label="Gallery controls">
+      <div class="filters" role="tablist" aria-label="Filter projects">
+        <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter" data-filter="kitchen" role="tab">Kitchens</button>
+        <button class="filter" data-filter="bathroom" role="tab">Bathrooms</button>
+        <button class="filter" data-filter="full" role="tab">Full Renovations</button>
+      </div>
+      <div style="color:var(--muted);font-weight:600">Showing <span id="visible-count">6</span> projects</div>
+    </section>
+
+    <section id="gallery" class="gallery container" aria-label="Project gallery">
+
+
+      <article class="project-card" data-category="bathroom" tabindex="0" role="button"
+        data-title="Compact Bathroom Remodel" 
+        data-desc="Complete bathroom renovation with marble-look flooring, modern fixtures, and frosted glass shower door."
+        data-image="bathroom 2.jpg">
+        <figure>
+          <img src="bathroom 2.jpg" alt="Compact bathroom with marble flooring" loading="lazy">
+          <figcaption>
+            <h3>Compact Bathroom Remodel</h3>
+            <p class="meta">Bathroom — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project-card" data-category="bathroom" tabindex="0" role="button"
+        data-title="Rustic Bathroom Renovation" 
+        data-desc="Charming rustic bathroom featuring wood-look paneling, arched mirror, and decorative vessel sink."
+        data-image="sink.jpg">
+        <figure>
+          <img src="sink.jpg" alt="Rustic bathroom with decorative sink" loading="lazy">
+          <figcaption>
+            <h3>Rustic Bathroom Renovation</h3>
+            <p class="meta">Bathroom — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project-card" data-category="bathroom" tabindex="0" role="button"
+        data-title="Natural Stone Shower" 
+        data-desc="Custom shower installation with wood-look tile walls and natural pebble stone floor."
+        data-image="shower 1.jpg">
+        <figure>
+          <img src="shower 1.jpg" alt="Shower with pebble stone floor" loading="lazy">
+          <figcaption>
+            <h3>Natural Stone Shower</h3>
+            <p class="meta">Bathroom — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project-card" data-category="bathroom" tabindex="0" role="button"
+        data-title="Modern Half Bath" 
+        data-desc="Clean and efficient half bathroom with modern fixtures and wood-look vinyl flooring."
+        data-image="toilet with plant.jpg">
+        <figure>
+          <img src="toilet with plant.jpg"Modern half bathroom" loading="lazy">
+          <figcaption>
+            <h3>Modern Half Bath</h3>
+            <p class="meta">Bathroom — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project-card" data-category="bathroom" tabindex="0" role="button"
+        data-title="Contemporary Bathroom Upgrade" 
+        data-desc="Full bathroom remodel with glass shower enclosure, subway tile, and modern vanities."
+        data-image="shower 2.jpg">
+        <figure>
+          <img src="shower 2.jpg" alt="Contemporary bathroom with glass shower" loading="lazy">
+          <figcaption>
+            <h3>Contemporary Bathroom Upgrade</h3>
+            <p class="meta">Bathroom — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="project-card" data-category="full" tabindex="0" role="button"
+        data-title="Multi-Level Deck Installation" 
+        data-desc="Custom multi-level deck construction with lattice railings and elevated viewing platforms."
+        data-image="deck job.jpg">
+        <figure>
+          <img src="deck job.jpg" alt="Multi-level deck with yellow lattice railings" loading="lazy">
+          <figcaption>
+            <h3>Multi-Level Deck Installation</h3>
+            <p class="meta">Full Renovation — 2025</p>
+          </figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-inner">
+        <button id="modal-close" class="modal-close" aria-label="Close project details">&times;</button>
+        <div class="modal-content">
+          <img id="modal-image" src="" alt="" loading="lazy">
+          <div class="modal-text">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <p class="modal-meta"><strong>Interested?</strong> <a href="get a quote.html">Request a quote</a> or <a href="get a quote.html">contact us</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Ninety9 Renovations</h3>
+          <p>Quality renovations across kitchens, bathrooms and whole-home projects.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin: 8px 0;"><a href="home.html">Home</a></li>
+            <li style="margin: 8px 0;"><a href="about.html">About</a></li>
+            <li style="margin: 8px 0;"><a href="survey.html">Request a quote</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <address style="font-style: normal;">
+            <a href="mailto:jonathan@99-renovations.com">jonathan@99-renovations.com</a>
+            <a href="tel:8434125372">843 412 5372</a>
+          </address>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year"></span> Ninety9 Renovations. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const filters = document.querySelectorAll('.filter');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    const countEl = document.getElementById('visible-count');
+
+    function updateCount() { 
+      countEl.textContent = cards.filter(c => !c.hidden).length; 
+    }
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => { 
+          b.classList.remove('active'); 
+          b.setAttribute('aria-selected','false'); 
+        });
+        btn.classList.add('active'); 
+        btn.setAttribute('aria-selected','true');
+        const filter = btn.getAttribute('data-filter');
+        cards.forEach(card => {
+          const show = (filter === 'all') || (card.getAttribute('data-category') === filter);
+          card.hidden = !show;
+        });
+        updateCount();
+      });
+    });
+
+    const modal = document.getElementById('project-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const closeBtn = document.getElementById('modal-close');
+    let lastFocused = null;
+
+    function openModal(card) {
+      lastFocused = document.activeElement;
+      modalImage.src = card.dataset.image;
+      modalImage.alt = card.querySelector('figcaption h3')?.innerText || card.dataset.title || '';
+      modalTitle.textContent = card.dataset.title || '';
+      modalDesc.textContent = card.dataset.desc || '';
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      modalImage.src = '';
+      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+      card.addEventListener('keydown', (e) => { 
+        if (e.key === 'Enter' || e.key === ' ') { 
+          e.preventDefault(); 
+          openModal(card); 
+        } 
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { 
+      if (e.target === modal) closeModal(); 
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+      if (modal.getAttribute('aria-hidden') === 'false' && e.key === 'Tab') {
+        const focusable = modal.querySelectorAll('button,a,[tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length-1];
+        if (e.shiftKey && document.activeElement === first) { 
+          e.preventDefault(); 
+          last.focus(); 
+        } else if (!e.shiftKey && document.activeElement === last) { 
+          e.preventDefault(); 
+          first.focus(); 
+        }
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    updateCount();
+  </script>
+</body>
+</html>
